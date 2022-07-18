@@ -9,42 +9,52 @@ const formatPath = (path: string) => {
   return path.replace('-', ' ').replace(/(?:^|\s)\S/g, a => a.toUpperCase());
 };
 
+const basePaths = [
+  'projects',
+  'my-projects',
+];
+
 export default function AsideNavHeader({ currentPath }: { currentPath: string }) {
-  const pathsArray = currentPath.replace('-', ' ').split('/').splice(3);
-  const basePaths = [
-    'projects',
-    'my-projects',
-  ];
-  const allPaths = basePaths.concat(pathsArray);
-  const items = allPaths.map((path, index) => {
-    return (
-      <div
-        key={path + index.toString()}
-        style={{
-          display: 'flex',
-        }}
+  const dynamicPathsArray = currentPath.replace('-', ' ').split('/').splice(3);
+  const baseLinks = basePaths.map((path, index) => (
+    <div
+      key={path + index.toString()}
+      style={{
+        display: 'flex',
+      }}
+    >
+      <Link
+        href={path}
       >
-        <Link href={`/${path}`}>
-          <Anchor
-            style={{
-              marginRight: (
-                path === 'my-projects'
-                  ? 15
-                  : 0
-              ),
-            }}
-          >
-            {formatPath(path)}
-          </Anchor>
-        </Link>
-        {
-          path === 'my-projects'
-            ? <ProjectDropdown />
-            : null
-        }
-      </div>
-    );
-    });
+        <Anchor
+          style={{
+            marginRight: (
+              path === 'my-projects'
+                ? 15
+                : 0
+            ),
+          }}
+        >
+          {formatPath(path)}
+        </Anchor>
+      </Link>
+      {
+        path === 'my-projects'
+          ? <ProjectDropdown />
+          : null
+      }
+    </div>
+  ));
+  const dynamicLinks = dynamicPathsArray.map((path) => (
+    <Link
+      key={path}
+      href={`/${path}`}
+    >
+      <Anchor>
+        {formatPath(path)}
+      </Anchor>
+    </Link>
+  ));
   return (
     <Breadcrumbs
       style={{
@@ -52,7 +62,8 @@ export default function AsideNavHeader({ currentPath }: { currentPath: string })
         alignItems: 'center',
       }}
     >
-      {items}
+      {baseLinks}
+      {dynamicLinks}
     </Breadcrumbs>
   );
 }

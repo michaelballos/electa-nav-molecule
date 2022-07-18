@@ -2,13 +2,14 @@ import {
   Menu,
   Button,
   Autocomplete,
+  useMantineTheme,
 } from '@mantine/core';
 import { DropdownButton } from '../DropdownButton/DropdownButton';
 import { useStyles } from './ProjectDropdown.styles';
 
 export default function ProjectDropdown() {
   const { classes } = useStyles();
-
+  const theme = useMantineTheme();
   return (
     <div className={classes.container}>
       <Menu
@@ -27,7 +28,7 @@ export default function ProjectDropdown() {
             <Autocomplete
               styles={{
                 hovered: {
-                  background: 'linear-gradient(#e66465, #9198e5)',
+                  background: theme.colors.dark[5],
                   color: 'white',
                 },
               }}
@@ -38,7 +39,7 @@ export default function ProjectDropdown() {
               sx={() => ({
                 backgroundColor: '#e66465',
                 '&:hover': {
-                  background: 'linear-gradient(#e66465, #9198e5)',
+                  backgroundColor: '#E35151',
                 },
               })}
             >

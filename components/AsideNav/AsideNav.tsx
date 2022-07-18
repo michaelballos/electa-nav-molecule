@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
   useState,
   SVGAttributes,
   FC,
@@ -43,7 +44,6 @@ export default function AsideNav({
   header,
   children,
 }: IAsideNav) {
-  console.log('PATH:', currentPath);
   const {
     classes,
     cx,
@@ -55,7 +55,7 @@ export default function AsideNav({
   const [
     activeLink,
     setActiveLink,
-  ] = useState('Settings');
+  ] = useState('');
   const [
     subNav,
     setSubNav,
@@ -63,8 +63,10 @@ export default function AsideNav({
   const onMainLinkClick = useCallback((label, subLinks) => {
     setActive(label);
     setSubNav(subLinks);
-    setActiveLink(subLinks[0].link);
-  }, [setActive, setSubNav]);
+  }, [
+    setActive,
+    setSubNav,
+  ]);
   const mainLinks = links.map((navLinkItems) => {
     const {
       link,
@@ -72,10 +74,13 @@ export default function AsideNav({
       subLinks,
     } = navLinkItems;
     return (
-      <Link href={`/projects/my-projects${link}`}>
+      <Link
+        key={label}
+        href={`/projects/my-projects${link}`}
+      >
         <UnstyledButton
           component="a"
-          key={label}
+          key={link}
           onClick={() => onMainLinkClick(label, subLinks)}
           className={cx(classes.mainLink)}
         >
@@ -98,13 +103,13 @@ export default function AsideNav({
     } = sub;
     return (
       <a
+        key={link}
         className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
         href="/"
         onClick={(event) => {
           event.preventDefault();
           setActiveLink(link);
         }}
-        key={link}
       >
         {label}
       </a>
@@ -126,7 +131,7 @@ export default function AsideNav({
           margin: 0,
           height: 'calc(100vh - 56px - 50px)',
         }}
-        width={{ sm: 350 }}
+        width={{ sm: 275 }}
       >
         <Navbar.Section grow className={classes.wrapper}>
           <div className={classes.aside}>

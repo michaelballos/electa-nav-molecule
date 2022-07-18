@@ -99,7 +99,7 @@ export default function Layout({ children }: ILayout) {
             position: 'absolute',
             height: 'calc(100vh - 56px - 50px)',
             width: '100vw',
-            paddingLeft: 350,
+            paddingLeft: 275,
           }}
         >
           {children}
