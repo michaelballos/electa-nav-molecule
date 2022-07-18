@@ -1,48 +1,46 @@
-
-import React, { useState } from 'react';
-import { Text, Navbar, UnstyledButton, Tooltip, Title } from '@mantine/core';
+import React, {
+  useMemo,
+  useState,
+  ReactNode,
+  SVGAttributes,
+  FC,
+} from 'react';
 import {
-  Home2,
-  Gauge,
-  DeviceDesktopAnalytics,
-  Key,
-} from 'tabler-icons-react';
+  Group,
+  Stack,
+  Text,
+  Navbar,
+  UnstyledButton,
+} from '@mantine/core';
 import { useStyles } from './AsideNav.styles';
 
-const mainLinksMockdata = [
-  {
-    icon: Home2,
-    label: 'Overview',
-  },
-  {
-    icon: Gauge,
-    label: 'Explorer',
-  },
-  {
-    icon: DeviceDesktopAnalytics,
-    label: 'History',
-  },
-  {
-    icon: Key,
-    label: 'Keys',
-  },
-];
+export interface IconProps extends SVGAttributes<SVGElement> {
+  color?: string;
+  size?: string | number;
+}
 
-const linksMockdata = [
-  'Security',
-  'Settings',
-  'Dashboard',
-  'Releases',
-  'Account',
-  'Orders',
-  'Clients',
-  'Databases',
-  'Pull Requests',
-  'Open Issues',
-  'Wiki pages',
-];
+export type Icon = FC<IconProps>;
 
-export default function AsideNav() {
+export interface IAsideNav {
+  header: ReactNode;
+  children: ReactNode | ReactNode[];
+  links: {
+    link: string;
+    label: string;
+    icon?: Icon;
+    subLinks?: {
+      link: string;
+      label: string;
+      icon?: Icon;
+    }[]
+  }[]
+}
+
+export default function AsideNav({
+  links,
+  header,
+  children,
+}: IAsideNav) {
   const {
     classes,
     cx,
@@ -50,67 +48,81 @@ export default function AsideNav() {
   const [
     active,
     setActive,
-  ] = useState('Releases');
+  ] = useState('Overview');
   const [
     activeLink,
     setActiveLink,
   ] = useState('Settings');
 
-  const mainLinks = mainLinksMockdata.map((link) => (
-      <UnstyledButton
-        key={link.label}
-        onClick={() => setActive(link.label)}
-        className={cx(classes.mainLink)}
-      >
-        <div className={cx({ [classes.mainLinkActive]: link.label === active })} />
-        <link.icon />
-        <Text
-          className={cx(classes.mainLinkLabel)}
-        >
-          {link.label}
-        </Text>
-      </UnstyledButton>
-  ));
-
-  const links = linksMockdata.map((link) => (
-    <a
-      className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
-      href="/"
-      onClick={(event) => {
-        event.preventDefault();
-        setActiveLink(link);
-      }}
-      key={link}
-    >
-      {link}
-    </a>
-  ));
-
   return (
-    <Navbar
+    <Stack
       style={{
-        position: 'absolute',
-        height: 'calc(100vh - 56px)',
+        height: 'max-content',
+        gap: 0,
       }}
-      width={{ sm: 300 }}
     >
-      <Navbar.Section grow className={classes.wrapper}>
-        <div className={classes.aside}>
-          <div className={classes.logo}>
-            <Text>
-              Nav
-            </Text>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '100vw',
+          height: 50,
+          paddingLeft: '5em',
+        }}
+      >
+        {header}
+      </div>
+      <Group>
+      <Navbar
+        style={{
+          margin: 0,
+          height: 'calc(100vh - 56px - 50px)',
+        }}
+        width={{ sm: 350 }}
+      >
+        <Navbar.Section grow className={classes.wrapper}>
+          <div className={classes.aside}>
+            {mainLinks}
           </div>
-          {mainLinks}
-        </div>
-        <div className={classes.main}>
-          <Title order={4} className={classes.title}>
-            {active}
-          </Title>
-
-          {links}
-        </div>
-      </Navbar.Section>
-    </Navbar>
+          <div className={classes.main}>
+            {}
+          </div>
+        </Navbar.Section>
+      </Navbar>
+      {children}
+      </Group>
+    </Stack>
   );
 }
+
+/**
+ return (
+ <a
+ className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
+ href="/"
+ onClick={(event) => {
+          event.preventDefault();
+          setActiveLink(link);
+        }}
+ key={link}
+ >
+ {label}
+ </a>
+ );
+ return (
+ <UnstyledButton
+ key={label}
+ onClick={() => setActive(label)}
+ className={cx(classes.mainLink)}
+ >
+ <div className={cx({ [classes.mainLinkActive]: label === active })} />
+ {icon}
+ <Text
+ className={cx(classes.mainLinkLabel)}
+ >
+ {label}
+ </Text>
+ </UnstyledButton>
+ );
+
+ */

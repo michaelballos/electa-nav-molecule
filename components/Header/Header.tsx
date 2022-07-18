@@ -28,7 +28,7 @@ export default function Header({ links }: HeaderMiddleProps) {
   ));
 
   return (
-    <MantineHeader height={56} mb={120}>
+    <MantineHeader height={56}>
       <Container className={classes.inner}>
         <Burger
           opened={opened}
