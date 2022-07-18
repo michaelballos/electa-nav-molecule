@@ -6,12 +6,14 @@ import {
 import ProjectDropdown from '../ProjectDropdown/ProjectDropdown';
 
 const formatPath = (path: string) => {
-  return path.replace('-', ' ').replace(/(?:^|\s)\S/g, a => a.toUpperCase());
+  const split = path.split('/');
+  const label = split[split.length - 1];
+  return label.replace('-', ' ').replace(/(?:^|\s)\S/g, a => a.toUpperCase());
 };
 
 const basePaths = [
   'projects',
-  'my-projects',
+  'projects/my-projects',
 ];
 
 export default function AsideNavHeader({ currentPath }: { currentPath: string }) {
@@ -24,12 +26,12 @@ export default function AsideNavHeader({ currentPath }: { currentPath: string })
       }}
     >
       <Link
-        href={path}
+        href={`/${path}`}
       >
         <Anchor
           style={{
             marginRight: (
-              path === 'my-projects'
+              path === 'projects/my-projects'
                 ? 15
                 : 0
             ),
@@ -39,7 +41,7 @@ export default function AsideNavHeader({ currentPath }: { currentPath: string })
         </Anchor>
       </Link>
       {
-        path === 'my-projects'
+        path === 'projects/my-projects'
           ? <ProjectDropdown />
           : null
       }
