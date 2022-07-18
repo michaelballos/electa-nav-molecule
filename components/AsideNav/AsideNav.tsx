@@ -1,7 +1,7 @@
+
 import React, { useState } from 'react';
-import { Text, Navbar, Center, Tooltip, UnstyledButton, Group } from '@mantine/core';
+import { Text, Navbar, UnstyledButton, Tooltip, Title } from '@mantine/core';
 import {
-  Icon as TablerIcon,
   Home2,
   Gauge,
   DeviceDesktopAnalytics,
@@ -9,31 +9,14 @@ import {
   CalendarStats,
   User,
   Settings,
-  Logout,
-  SwitchHorizontal,
 } from 'tabler-icons-react';
 import { useStyles } from './AsideNav.styles';
 
-interface NavbarLinkProps {
-  icon: TablerIcon;
-  label: string;
-  active?: boolean;
-  onClick?(): void;
-}
-
-function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
-  const { classes, cx } = useStyles();
-  return (
-    <Tooltip label={label} position="right" withArrow transitionDuration={0}>
-      <UnstyledButton onClick={onClick} className={cx(classes.link, { [classes.active]: active })}>
-        <Icon />
-      </UnstyledButton>
-    </Tooltip>
-  );
-}
-
-const mockdata = [
-  { icon: Home2, label: 'Home' },
+const mainLinksMockdata = [
+  {
+    icon: Home2,
+    label: 'Overview',
+  },
   { icon: Gauge, label: 'Dashboard' },
   { icon: DeviceDesktopAnalytics, label: 'Analytics' },
   { icon: CalendarStats, label: 'Releases' },
@@ -42,42 +25,88 @@ const mockdata = [
   { icon: Settings, label: 'Settings' },
 ];
 
-export default function AsideNav() {
-  const [active, setActive] = useState(2);
+const linksMockdata = [
+  'Security',
+  'Settings',
+  'Dashboard',
+  'Releases',
+  'Account',
+  'Orders',
+  'Clients',
+  'Databases',
+  'Pull Requests',
+  'Open Issues',
+  'Wiki pages',
+];
 
-  const links = mockdata.map((link, index) => (
-    <NavbarLink
-      {...link}
-      key={link.label}
-      active={index === active}
-      onClick={() => setActive(index)}
-    />
+export default function AsideNav() {
+  const {
+    classes,
+    cx,
+  } = useStyles();
+  const [
+    active,
+    setActive,
+  ] = useState('Releases');
+  const [
+    activeLink,
+    setActiveLink,
+  ] = useState('Settings');
+
+  const mainLinks = mainLinksMockdata.map((link) => (
+      <UnstyledButton
+        key={link.label}
+        onClick={() => setActive(link.label)}
+        className={cx(classes.mainLink)}
+      >
+        <div className={cx({ [classes.mainLinkActive]: link.label === active })} />
+        <link.icon />
+        <Text
+          className={cx(classes.mainLinkLabel)}
+        >
+          {link.label}
+        </Text>
+      </UnstyledButton>
+  ));
+
+  const links = linksMockdata.map((link) => (
+    <a
+      className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
+      href="/"
+      onClick={(event) => {
+        event.preventDefault();
+        setActiveLink(link);
+      }}
+      key={link}
+    >
+      {link}
+    </a>
   ));
 
   return (
     <Navbar
-      width={{ base: 80 }}
-      p="md"
       style={{
         position: 'absolute',
-        height: '100vh',
+        height: 'calc(100vh - 56px)',
       }}
+      width={{ sm: 300 }}
     >
-      <Center>
-        <Text>
-          Project
-        </Text>
-      </Center>
-      <Navbar.Section grow mt={50}>
-        <Group direction="column" align="center" spacing={0}>
+      <Navbar.Section grow className={classes.wrapper}>
+        <div className={classes.aside}>
+          <div className={classes.logo}>
+            <Text>
+              Nav
+            </Text>
+          </div>
+          {mainLinks}
+        </div>
+        <div className={classes.main}>
+          <Title order={4} className={classes.title}>
+            {active}
+          </Title>
+
           {links}
-        </Group>
-      </Navbar.Section>
-      <Navbar.Section>
-        <Group direction="column" align="center" spacing={0}>
-          <NavbarLink icon={SwitchHorizontal} label="Change account" />
-          <NavbarLink icon={Logout} label="Logout" />
-        </Group>
+        </div>
       </Navbar.Section>
     </Navbar>
   );
