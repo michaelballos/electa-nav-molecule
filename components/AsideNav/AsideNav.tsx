@@ -56,6 +56,7 @@ export default function AsideNav({
   const onMainLinkClick = useCallback((label, subLinks) => {
     setActive(label);
     setSubNav(subLinks);
+    setActiveLink(subLinks[0].link);
   }, [setActive, setSubNav]);
   const mainLinks = links.map((navLinkItems) => {
     const {
@@ -90,7 +91,6 @@ export default function AsideNav({
         href="/"
         onClick={(event) => {
           event.preventDefault();
-          console.log(link);
           setActiveLink(link);
         }}
         key={link}
