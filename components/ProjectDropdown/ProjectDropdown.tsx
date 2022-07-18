@@ -25,10 +25,23 @@ export default function ProjectDropdown() {
         <div className={classes.dropdownInnerContainer}>
           <div className={classes.searchAndButton}>
             <Autocomplete
-              placeholder="Pick one"
-              data={['React', 'Angular', 'Svelte', 'Vue']}
+              styles={{
+                hovered: {
+                  background: 'linear-gradient(#e66465, #9198e5)',
+                  color: 'white',
+                },
+              }}
+              placeholder="Search for project"
+              data={['dev-delegation', 'nurse-to-patient', 'aircraft-pilots', 'speed-dating']}
             />
-            <Button>
+            <Button
+              sx={() => ({
+                backgroundColor: '#e66465',
+                '&:hover': {
+                  background: 'linear-gradient(#e66465, #9198e5)',
+                },
+              })}
+            >
               New
             </Button>
           </div>

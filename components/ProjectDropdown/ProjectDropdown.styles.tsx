@@ -30,12 +30,13 @@ export const useStyles = createStyles((theme) => ({
   },
 
   dropdownInnerContainer: {
+    padding: 5,
     height: 400,
   },
 
   searchAndButton: {
     display: 'flex',
-    gap: 10,
+    gap: 15,
     justifyContent: 'center',
     alignItems: 'center',
     height: 'max-content',
