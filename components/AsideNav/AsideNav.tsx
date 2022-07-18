@@ -1,9 +1,5 @@
 import React, {
-  useMemo,
-  useState,
-  ReactNode,
-  SVGAttributes,
-  FC,
+  useState, ReactNode, SVGAttributes, FC, useCallback,
 } from 'react';
 import {
   Group,
@@ -22,16 +18,16 @@ export interface IconProps extends SVGAttributes<SVGElement> {
 export type Icon = FC<IconProps>;
 
 export interface IAsideNav {
-  header: ReactNode;
-  children: ReactNode | ReactNode[];
+  header: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   links: {
     link: string;
     label: string;
-    icon?: Icon;
+    icon?: Icon | undefined;
     subLinks?: {
       link: string;
       label: string;
-      icon?: Icon;
+      icon?: Icon | undefined;
     }[]
   }[]
 }
@@ -53,7 +49,56 @@ export default function AsideNav({
     activeLink,
     setActiveLink,
   ] = useState('Settings');
-
+  const [
+    subNav,
+    setSubNav,
+  ] = useState(links[0].subLinks);
+  const onMainLinkClick = useCallback((label, subLinks) => {
+    setActive(label);
+    setSubNav(subLinks);
+  }, [setActive, setSubNav]);
+  const mainLinks = links.map((navLinkItems) => {
+    const {
+      label,
+      subLinks,
+    } = navLinkItems;
+    return (
+      <UnstyledButton
+        key={label}
+        onClick={() => onMainLinkClick(label, subLinks)}
+        className={cx(classes.mainLink)}
+      >
+        <div className={cx({ [classes.mainLinkActive]: label === active })} />
+        {/**@ts-ignore*/}
+        <navLinkItems.icon />
+        <Text
+          className={cx(classes.mainLinkLabel)}
+        >
+          {label}
+        </Text>
+      </UnstyledButton>
+    );
+  });
+  const subNavLinks = subNav?.map((sub) => {
+    const {
+      link,
+      label,
+    } = sub;
+    return (
+      <a
+        className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
+        href="/"
+        onClick={(event) => {
+          event.preventDefault();
+          console.log(link);
+          setActiveLink(link);
+        }}
+        key={link}
+      >
+        {label}
+      </a>
+    );
+  });
   return (
     <Stack
       style={{
@@ -85,7 +130,7 @@ export default function AsideNav({
             {mainLinks}
           </div>
           <div className={classes.main}>
-            {}
+            {subNavLinks}
           </div>
         </Navbar.Section>
       </Navbar>
@@ -124,5 +169,4 @@ export default function AsideNav({
  </Text>
  </UnstyledButton>
  );
-
  */

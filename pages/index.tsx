@@ -17,57 +17,60 @@ const mockLinks = [
   {
     icon: Home2,
     label: 'Overview',
-    link: '/',
-    links: [
+    link: '/overview',
+    subLinks: [
       {
         label: 'Security',
-        link: '/',
+        link: '/security',
       },
       {
         label: 'Dashboard',
-        link: '/',
+        link: '/dashboard',
       },
     ],
   },
   {
     icon: Gauge,
     label: 'Explorer',
-    links: [
+    link: '/explorer',
+    subLinks: [
       {
         label: 'Releases',
-        link: '/',
+        link: '/releases',
       },
       {
         label: 'Account',
-        link: '/',
+        link: '/account',
       },
     ],
   },
   {
     icon: DeviceDesktopAnalytics,
     label: 'History',
-    links: [
+    link: '/history',
+    subLinks: [
       {
         label: 'Orders',
-        link: '/',
+        link: '/orders',
       },
       {
         label: 'Clients',
-        link: '/',
+        link: '/clients',
       },
     ],
   },
   {
     icon: Key,
     label: 'Keys',
-    links: [
+    link: '/keys',
+    subLinks: [
       {
         label: 'Pull Ups',
-        link: '/',
+        link: '/pull-ups',
       },
       {
         label: 'Open Issues',
-        link: '/',
+        link: '/open-issues',
       },
     ],
   },
@@ -75,20 +78,25 @@ const mockLinks = [
 
 export default function HomePage() {
   return (
-    <Group>
+    <div
+      style={{
+        display: 'flex',
+      }}
+    >
       <AsideNav
         links={mockLinks}
         header={<AsideNaveHeader />}
       >
-        <Stack
+        <div
           style={{
-            marginLeft: '',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
           <Welcome />
           <ColorSchemeToggle />
-        </Stack>
+        </div>
       </AsideNav>
-    </Group>
+    </div>
   );
 }

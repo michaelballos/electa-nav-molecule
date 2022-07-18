@@ -36,6 +36,7 @@ export default function App(props: AppProps & { colorScheme: ColorScheme }) {
                 },
               ]}
             />
+            {/**@ts-ignore*/}
             <Component {...pageProps} />
           </NotificationsProvider>
         </MantineProvider>
