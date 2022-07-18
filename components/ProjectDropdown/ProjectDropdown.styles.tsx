@@ -18,4 +18,27 @@ export const useStyles = createStyles((theme) => ({
       cursor: 'pointer',
     },
   },
+
+  arrowStyle: {
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+  },
+
+  dropdownContainer: {
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+  },
+
+  dropdownInnerContainer: {
+    height: 400,
+  },
+
+  searchAndButton: {
+    display: 'flex',
+    gap: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 'max-content',
+    width: '100%',
+  },
 }));

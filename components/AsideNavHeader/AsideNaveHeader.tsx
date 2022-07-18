@@ -2,7 +2,7 @@ import {
   Breadcrumbs,
   Anchor,
 } from '@mantine/core';
-import ProjectDropdown from "../ProjectDropdown/ProjectDropdown";
+import ProjectDropdown from '../ProjectDropdown/ProjectDropdown';
 
 const items = [
   {
