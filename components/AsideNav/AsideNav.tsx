@@ -106,15 +106,7 @@ export default function AsideNav({
         gap: 0,
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          width: '100vw',
-          height: 50,
-          paddingLeft: '5em',
-        }}
-      >
+      <div className={classes.header}>
         {header}
       </div>
       <Group>
@@ -139,34 +131,3 @@ export default function AsideNav({
     </Stack>
   );
 }
-
-/**
- return (
- <a
- className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
- href="/"
- onClick={(event) => {
-          event.preventDefault();
-          setActiveLink(link);
-        }}
- key={link}
- >
- {label}
- </a>
- );
- return (
- <UnstyledButton
- key={label}
- onClick={() => setActive(label)}
- className={cx(classes.mainLink)}
- >
- <div className={cx({ [classes.mainLinkActive]: label === active })} />
- {icon}
- <Text
- className={cx(classes.mainLinkLabel)}
- >
- {label}
- </Text>
- </UnstyledButton>
- );
- */

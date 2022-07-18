@@ -1,6 +1,10 @@
 import { createStyles } from '@mantine/core';
 
 export const useStyles = createStyles((theme) => ({
+  header: {
+    backgroundColor: theme.colorScheme === 'dark' ? '' : 'black',
+  },
+
   inner: {
     display: 'flex',
     justifyContent: 'space-between',

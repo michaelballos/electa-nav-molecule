@@ -28,7 +28,10 @@ export default function Header({ links }: HeaderMiddleProps) {
   ));
 
   return (
-    <MantineHeader height={56}>
+    <MantineHeader
+      className={classes.header}
+      height={56}
+    >
       <Container className={classes.inner}>
         <Burger
           opened={opened}
@@ -40,7 +43,11 @@ export default function Header({ links }: HeaderMiddleProps) {
           {items}
         </Group>
 
-        <Text>
+        <Text
+          style={{
+            color: 'white',
+          }}
+        >
           Electa
         </Text>
 

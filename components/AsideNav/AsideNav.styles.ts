@@ -15,6 +15,15 @@ export const useStyles = createStyles((theme) => ({
       theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
     }`,
   },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100vw',
+    height: 50,
+    paddingLeft: '5em',
+    borderBottom: '1px solid #2C2E33',
+    boxShadow: theme.colorScheme === 'dark' ? '0 5px 9px #2C2E33' : '',
+  },
 
   main: {
     flex: 1,
@@ -92,11 +101,12 @@ export const useStyles = createStyles((theme) => ({
 
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
-      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+      color: theme.colorScheme === 'dark' ? theme.white : '',
     },
   },
 
   linkActive: {
+    color: theme.colorScheme === 'dark' ? 'white' : 'white',
     '&, &:hover': {
       borderLeftColor: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 7 : 5],
       background: 'linear-gradient(#e66465, #9198e5)',
