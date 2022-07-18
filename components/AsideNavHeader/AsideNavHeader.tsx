@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   Breadcrumbs,
   Anchor,
@@ -7,15 +8,15 @@ import ProjectDropdown from '../ProjectDropdown/ProjectDropdown';
 const items = [
   {
     title: 'Projects',
-    href: '#',
+    href: '/projects',
   },
   {
     title: 'My Projects',
-    href: '#',
+    href: 'projects/my-projects',
   },
   {
     title: 'Overview',
-    href: '#',
+    href: '/projects/my-projects/overview',
   },
 ].map((item, index) => {
   if (item.title === 'My Projects') {
@@ -26,29 +27,32 @@ const items = [
           display: 'flex',
         }}
       >
-        <Anchor
-          style={{
-            marginRight: 10,
-          }}
-          href={item.href}
-        >
-          {item.title}
-        </Anchor>
+        <Link href={item.href}>
+          <Anchor
+            style={{
+              marginRight: 10,
+            }}
+          >
+            {item.title}
+          </Anchor>
+        </Link>
         <ProjectDropdown />
       </div>
     );
   }
   return (
-    <Anchor
+    <Link
       href={item.href}
       key={index}
     >
-      {item.title}
-    </Anchor>
+      <Anchor>
+        {item.title}
+      </Anchor>
+    </Link>
   );
 });
 
-export default function AsideNaveHeader() {
+export default function AsideNavHeader() {
   return (
     <Breadcrumbs
       style={{

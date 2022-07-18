@@ -1,5 +1,8 @@
 import React, {
-  useState, ReactNode, SVGAttributes, FC, useCallback,
+  useState,
+  SVGAttributes,
+  FC,
+  useCallback,
 } from 'react';
 import {
   Group,
@@ -20,6 +23,7 @@ export type Icon = FC<IconProps>;
 export interface IAsideNav {
   header: JSX.Element;
   children: JSX.Element | JSX.Element[];
+  currentPath: string;
   links: {
     link: string;
     label: string;
@@ -34,9 +38,11 @@ export interface IAsideNav {
 
 export default function AsideNav({
   links,
+  currentPath,
   header,
   children,
 }: IAsideNav) {
+  console.log('PATH:', currentPath);
   const {
     classes,
     cx,
