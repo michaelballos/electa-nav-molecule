@@ -17,60 +17,60 @@ const mockLinks = [
   {
     icon: Home2,
     label: 'Overview',
-    link: '/overview',
+    link: 'overview',
     subLinks: [
       {
         label: 'Security',
-        link: '/security',
+        link: 'security',
       },
       {
         label: 'Dashboard',
-        link: '/dashboard',
+        link: 'dashboard',
       },
     ],
   },
   {
     icon: Gauge,
     label: 'Explorer',
-    link: '/explorer',
+    link: 'explorer',
     subLinks: [
       {
         label: 'Releases',
-        link: '/releases',
+        link: 'releases',
       },
       {
         label: 'Account',
-        link: '/account',
+        link: 'account',
       },
     ],
   },
   {
     icon: DeviceDesktopAnalytics,
     label: 'History',
-    link: '/history',
+    link: 'history',
     subLinks: [
       {
         label: 'Orders',
-        link: '/orders',
+        link: 'orders',
       },
       {
         label: 'Clients',
-        link: '/clients',
+        link: 'clients',
       },
     ],
   },
   {
     icon: Key,
     label: 'Keys',
-    link: '/keys',
+    link: 'keys',
     subLinks: [
       {
         label: 'Pull Ups',
-        link: '/pull-ups',
+        link: 'pull-ups',
       },
       {
         label: 'Open Issues',
-        link: '/open-issues',
+        link: 'open-issues',
       },
     ],
   },

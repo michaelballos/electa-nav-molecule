@@ -76,7 +76,7 @@ export default function AsideNav({
     return (
       <Link
         key={label}
-        href={`/projects/my-projects${link}`}
+        href={`/projects/my-projects/${link}`}
       >
         <UnstyledButton
           component="a"
@@ -102,17 +102,19 @@ export default function AsideNav({
       label,
     } = sub;
     return (
-      <a
+      <Link
         key={link}
-        className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
-        href="/"
-        onClick={(event) => {
-          event.preventDefault();
-          setActiveLink(link);
-        }}
+        href={`/projects/my-projects/${active.charAt(0).toLowerCase() + active.slice(1)}/${link}`}
       >
-        {label}
-      </a>
+        <a
+          className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
+          onClick={() => {
+            setActiveLink(link);
+          }}
+        >
+          {label}
+        </a>
+      </Link>
     );
   });
   return (
