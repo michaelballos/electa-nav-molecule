@@ -5,10 +5,7 @@ import {
   Home2,
   Gauge,
   DeviceDesktopAnalytics,
-  Fingerprint,
-  CalendarStats,
-  User,
-  Settings,
+  Key,
 } from 'tabler-icons-react';
 import { useStyles } from './AsideNav.styles';
 
@@ -17,12 +14,18 @@ const mainLinksMockdata = [
     icon: Home2,
     label: 'Overview',
   },
-  { icon: Gauge, label: 'Dashboard' },
-  { icon: DeviceDesktopAnalytics, label: 'Analytics' },
-  { icon: CalendarStats, label: 'Releases' },
-  { icon: User, label: 'Account' },
-  { icon: Fingerprint, label: 'Security' },
-  { icon: Settings, label: 'Settings' },
+  {
+    icon: Gauge,
+    label: 'Explorer',
+  },
+  {
+    icon: DeviceDesktopAnalytics,
+    label: 'History',
+  },
+  {
+    icon: Key,
+    label: 'Keys',
+  },
 ];
 
 const linksMockdata = [
