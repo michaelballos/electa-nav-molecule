@@ -4,6 +4,7 @@ import React, {
   FC,
   useCallback,
 } from 'react';
+import Link from 'next/link';
 import {
   Group,
   Stack,
@@ -66,24 +67,28 @@ export default function AsideNav({
   }, [setActive, setSubNav]);
   const mainLinks = links.map((navLinkItems) => {
     const {
+      link,
       label,
       subLinks,
     } = navLinkItems;
     return (
-      <UnstyledButton
-        key={label}
-        onClick={() => onMainLinkClick(label, subLinks)}
-        className={cx(classes.mainLink)}
-      >
-        <div className={cx({ [classes.mainLinkActive]: label === active })} />
-        {/**@ts-ignore*/}
-        <navLinkItems.icon />
-        <Text
-          className={cx(classes.mainLinkLabel)}
+      <Link href={`/projects/my-projects${link}`}>
+        <UnstyledButton
+          component="a"
+          key={label}
+          onClick={() => onMainLinkClick(label, subLinks)}
+          className={cx(classes.mainLink)}
         >
-          {label}
-        </Text>
-      </UnstyledButton>
+          <div className={cx({ [classes.mainLinkActive]: label === active })} />
+          {/**@ts-ignore*/}
+          <navLinkItems.icon />
+          <Text
+            className={cx(classes.mainLinkLabel)}
+          >
+            {label}
+          </Text>
+        </UnstyledButton>
+      </Link>
     );
   });
   const subNavLinks = subNav?.map((sub) => {
