@@ -20,7 +20,7 @@ export default function MyProjects() {
       >
         Welcome to{' '}
         <Text inherit variant="gradient" component="span">
-          Releases
+          dev-instance-2
         </Text>
       </Title>
     </div>

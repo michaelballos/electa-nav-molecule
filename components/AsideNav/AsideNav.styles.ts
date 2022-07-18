@@ -88,7 +88,7 @@ export const useStyles = createStyles((theme) => ({
   link: {
     boxSizing: 'border-box',
     display: 'block',
-    textDecoration: 'none',
+    textDecoration: 'none !important',
     borderTopRightRadius: theme.radius.md,
     borderBottomRightRadius: theme.radius.md,
     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
@@ -96,8 +96,8 @@ export const useStyles = createStyles((theme) => ({
     fontSize: theme.fontSizes.sm,
     marginRight: theme.spacing.md,
     fontWeight: 500,
-    height: 44,
-    lineHeight: '44px',
+    height: 30,
+    lineHeight: '30px',
 
     '&:hover': {
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],

@@ -1,5 +1,4 @@
 import React, {
-  useEffect,
   useState,
   SVGAttributes,
   FC,
@@ -7,8 +6,7 @@ import React, {
 } from 'react';
 import Link from 'next/link';
 import {
-  Group,
-  Stack,
+  Anchor,
   Text,
   Navbar,
   UnstyledButton,
@@ -96,6 +94,7 @@ export default function AsideNav({
       </Link>
     );
   });
+
   const subNavLinks = subNav?.map((sub) => {
     const {
       link,
@@ -106,20 +105,22 @@ export default function AsideNav({
         key={link}
         href={`/projects/my-projects/${active.charAt(0).toLowerCase() + active.slice(1)}/${link}`}
       >
-        <a
+        <Anchor
           className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
           onClick={() => {
             setActiveLink(link);
           }}
         >
           {label}
-        </a>
+        </Anchor>
       </Link>
     );
   });
   return (
-    <Stack
+    <div
       style={{
+        display: 'flex',
+        flexDirection: 'column',
         height: 'max-content',
         gap: 0,
       }}
@@ -127,7 +128,11 @@ export default function AsideNav({
       <div className={classes.header}>
         {header}
       </div>
-      <Group>
+      <div
+        style={{
+          display: 'flex',
+        }}
+      >
       <Navbar
         style={{
           margin: 0,
@@ -145,7 +150,7 @@ export default function AsideNav({
         </Navbar.Section>
       </Navbar>
       {children}
-      </Group>
-    </Stack>
+      </div>
+    </div>
   );
 }

@@ -35,12 +35,12 @@ const mockLinks = [
     link: 'explorer',
     subLinks: [
       {
-        label: 'Releases',
-        link: 'releases',
+        label: 'dev-instance-1',
+        link: 'dev-instance-1',
       },
       {
-        label: 'Account',
-        link: 'account',
+        label: 'dev-instance-2',
+        link: 'dev-instance-2',
       },
     ],
   },
