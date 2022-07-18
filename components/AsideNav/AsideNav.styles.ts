@@ -42,7 +42,7 @@ export const useStyles = createStyles((theme) => ({
     left: 0,
     width: 8,
     height: 60,
-    borderRadius: 2,
+    borderRadius: 3,
     background: 'linear-gradient(#e66465, #9198e5)',
   },
 
@@ -99,8 +99,7 @@ export const useStyles = createStyles((theme) => ({
   linkActive: {
     '&, &:hover': {
       borderLeftColor: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 7 : 5],
-      backgroundColor: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 7 : 5],
-      color: theme.white,
+      background: 'linear-gradient(#e66465, #9198e5)',
     },
   },
 }));
