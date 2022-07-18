@@ -91,7 +91,7 @@ export default function Layout({ children }: ILayout) {
       />
       <AsideNav
         currentPath={currentPath}
-        header={<AsideNavHeader />}
+        header={<AsideNavHeader currentPath={currentPath} />}
         links={mockLinks}
       >
         <div

@@ -5,54 +5,46 @@ import {
 } from '@mantine/core';
 import ProjectDropdown from '../ProjectDropdown/ProjectDropdown';
 
-const items = [
-  {
-    title: 'Projects',
-    href: '/projects',
-  },
-  {
-    title: 'My Projects',
-    href: 'projects/my-projects',
-  },
-  {
-    title: 'Overview',
-    href: '/projects/my-projects/overview',
-  },
-].map((item, index) => {
-  if (item.title === 'My Projects') {
+const formatPath = (path: string) => {
+  return path.replace('-', ' ').replace(/(?:^|\s)\S/g, a => a.toUpperCase());
+};
+
+export default function AsideNavHeader({ currentPath }: { currentPath: string }) {
+  const pathsArray = currentPath.replace('-', ' ').split('/').splice(3);
+  const basePaths = [
+    'projects',
+    'my-projects',
+  ];
+  const allPaths = basePaths.concat(pathsArray);
+  const items = allPaths.map((path, index) => {
     return (
       <div
-        key={item.title + index.toString()}
+        key={path + index.toString()}
         style={{
           display: 'flex',
         }}
       >
-        <Link href={item.href}>
+        <Link href={`/${path}`}>
           <Anchor
             style={{
-              marginRight: 10,
+              marginRight: (
+                path === 'my-projects'
+                  ? 15
+                  : 0
+              ),
             }}
           >
-            {item.title}
+            {formatPath(path)}
           </Anchor>
         </Link>
-        <ProjectDropdown />
+        {
+          path === 'my-projects'
+            ? <ProjectDropdown />
+            : null
+        }
       </div>
     );
-  }
-  return (
-    <Link
-      href={item.href}
-      key={index}
-    >
-      <Anchor>
-        {item.title}
-      </Anchor>
-    </Link>
-  );
-});
-
-export default function AsideNavHeader() {
+    });
   return (
     <Breadcrumbs
       style={{
