@@ -48,7 +48,7 @@ export default function Header({ links }: HeaderMiddleProps) {
             color: 'white',
           }}
         >
-          Electa
+          Electa Logo
         </Text>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>

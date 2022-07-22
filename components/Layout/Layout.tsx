@@ -37,10 +37,98 @@ const mockLinks = [
       {
         label: 'dev-instance-1',
         link: 'dev-instance-1',
+        subLinks: [
+          {
+            label: 'Delegations',
+            link: 'delegations',
+            subLinks: [
+              {
+                label: 'sub-page-1',
+                link: 'sub-page-1',
+              },
+              {
+                label: 'sub-page-2',
+                link: 'sub-page-2',
+              },
+            ],
+          },
+          {
+            label: 'Roles',
+            link: 'roles',
+            subLinks: [
+              {
+                label: 'sub-page-1',
+                link: 'sub-page-1',
+              },
+              {
+                label: 'sub-page-2',
+                link: 'sub-page-2',
+              },
+            ],
+          },
+          {
+            label: 'Qualifications',
+            link: 'qualifications',
+            subLinks: [
+              {
+                label: 'sub-page-1',
+                link: 'sub-page-1',
+              },
+              {
+                label: 'sub-page-2',
+                link: 'sub-page-2',
+              },
+            ],
+          },
+        ],
       },
       {
         label: 'dev-instance-2',
         link: 'dev-instance-2',
+        subLinks: [
+          {
+            label: 'Delegations',
+            link: 'delegations',
+            subLinks: [
+              {
+                label: 'sub-page-1',
+                link: 'sub-page-1',
+              },
+              {
+                label: 'sub-page-2',
+                link: 'sub-page-2',
+              },
+            ],
+          },
+          {
+            label: 'Roles',
+            link: 'roles',
+            subLinks: [
+              {
+                label: 'sub-page-1',
+                link: 'sub-page-1',
+              },
+              {
+                label: 'sub-page-2',
+                link: 'sub-page-2',
+              },
+            ],
+          },
+          {
+            label: 'Qualifications',
+            link: 'qualifications',
+            subLinks: [
+              {
+                label: 'sub-page-1',
+                link: 'sub-page-1',
+              },
+              {
+                label: 'sub-page-2',
+                link: 'sub-page-2',
+              },
+            ],
+          },
+        ],
       },
     ],
   },

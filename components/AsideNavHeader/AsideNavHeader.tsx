@@ -18,7 +18,6 @@ const basePaths = [
 
 export default function AsideNavHeader({ currentPath }: { currentPath: string }) {
   const dynamicPathsArray = currentPath.replace('-', ' ').split('/').splice(3);
-  console.log(dynamicPathsArray);
   const baseLinks = basePaths.map((path, index) => (
     <div
       key={path + index.toString()}
